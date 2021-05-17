@@ -2,7 +2,7 @@ const path = require("path")
 
 const createTagPages = (createPage, posts) => {
   const allTagsIndexTemplate = path.resolve("src/templates/allTagsIndex.js")
-  const singleTagsIndexTemplate = path.resolve("src/templates/singleTagIndex.js")
+  const singleTagIndexTemplate = path.resolve("src/templates/singleTagIndex.js")
 
   const postsByTag = {}
 
@@ -26,6 +26,19 @@ const createTagPages = (createPage, posts) => {
     context: {
       tags: tags.sort()
     }
+  })
+
+  tags.forEach(tagName => {
+    const posts = postsByTag[tagName]
+
+    createPage({
+      path: `/tags/${tagName}`,
+      component: singleTagIndexTemplate,
+      context: {
+        posts,
+        tagName
+      }
+    })
   })
 }
 
