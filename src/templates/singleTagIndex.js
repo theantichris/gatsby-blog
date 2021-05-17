@@ -5,7 +5,7 @@ const SingleTagTemplate = ({data, pageContext}) => {
   const { posts, tagName } = pageContext
 
   return (
-    <div>
+    <div style={{fontFamily: "avenir"}}>
       <div>
         Posts about {`${tagName}`}
       </div>
